@@ -42,8 +42,9 @@ resource "oci_database_db_system" "main" {
   subnet_id       = local.subnet_id
 
   #Optional
-  cpu_core_count   = var.db_system_cpu_core_count
-  database_edition = var.db_system_database_edition
+  cpu_core_count          = var.db_system_cpu_core_count
+  data_storage_size_in_gb = var.db_system_data_storage_size_in_gb
+  database_edition        = var.db_system_database_edition
 
   defined_tags  = var.defined_tags
   display_name  = var.db_system_display_name

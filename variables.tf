@@ -71,6 +71,12 @@ variable "db_system_time_zone" {
   type        = string
 }
 
+variable "db_system_data_storage_size_in_gb" {
+  description = "(Optional) (Updatable) Size (in GB) of the initial data volume that will be created and attached to a virtual machine DB system. You can scale up storage after provisioning, as needed. Note that the total storage size attached will be more than the amount you specify to allow for REDO/RECO space and software volume. Required for VMDBs."
+  type        = string
+}
+
+
 # optional
 
 variable "db_system_cpu_core_count" {

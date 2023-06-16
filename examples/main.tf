@@ -16,9 +16,10 @@ module "db_system" {
   subnet_name              = each.value["subnet_name"]
   db_system_time_zone      = "test"
 
-  db_system_cpu_core_count   = each.value["db_system_cpu_core_count"]
-  db_system_database_edition = each.value["db_system_database_edition"]
-  db_system_display_name     = each.key
+  db_system_cpu_core_count          = each.value["db_system_cpu_core_count"]
+  db_system_data_storage_size_in_gb = each.value["db_system_data_storage_size_in_gb"]
+  db_system_database_edition        = each.value["db_system_database_edition"]
+  db_system_display_name            = each.key
 
   db_system_node_count = each.value["db_system_node_count"]
 
