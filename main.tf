@@ -36,7 +36,7 @@ resource "oci_database_db_system" "main" {
     defined_tags  = var.defined_tags
     freeform_tags = local.merged_freeform_tags
   }
-  hostname        = var.db_system_hostnamef
+  hostname        = var.db_system_hostname
   shape           = var.db_system_shape
   ssh_public_keys = var.ssh_public_keys
   subnet_id       = local.subnet_id
