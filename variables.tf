@@ -91,12 +91,6 @@ variable "db_system_display_name" {
   default     = null
 }
 
-variable "db_system_domain" {
-  description = "The domain name for the DB system."
-  type        = string
-  default     = null
-}
-
 variable "db_system_license_model" {
   description = "The Oracle license model that applies to all the databases on the DB system. The default is LICENSE_INCLUDED."
   type        = string
