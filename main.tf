@@ -28,8 +28,11 @@ resource "oci_database_db_system" "main" {
     database {
       #Required
       admin_password = var.db_system_admin_password
-      defined_tags   = var.defined_tags
-      freeform_tags  = local.merged_freeform_tags
+
+      #Optional
+      db_name       = var.db_system_db_home_database_db_name
+      defined_tags  = var.defined_tags
+      freeform_tags = local.merged_freeform_tags
     }
 
     #Optional

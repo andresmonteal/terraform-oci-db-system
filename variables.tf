@@ -81,6 +81,11 @@ variable "db_system_db_home_db_version" {
   type        = string
 }
 
+variable "db_system_db_home_database_db_name" {
+  description = "The display name of the database to be created from the backup. It must begin with an alphabetic character and can contain a maximum of eight alphanumeric characters. Special characters are not permitted."
+  type        = string
+}
+
 
 # optional
 
