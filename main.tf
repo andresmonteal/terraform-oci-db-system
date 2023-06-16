@@ -33,6 +33,7 @@ resource "oci_database_db_system" "main" {
     }
 
     #Optional
+    db_version    = var.db_system_db_home_db_version
     defined_tags  = var.defined_tags
     freeform_tags = local.merged_freeform_tags
   }

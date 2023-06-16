@@ -76,6 +76,11 @@ variable "db_system_data_storage_size_in_gb" {
   type        = string
 }
 
+variable "db_system_db_home_db_version" {
+  description = "Required when source=NONE) A valid Oracle Database version. For a list of supported versions, use the ListDbVersions operation."
+  type        = string
+}
+
 
 # optional
 
