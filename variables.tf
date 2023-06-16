@@ -119,6 +119,12 @@ variable "db_system_node_count" {
   default     = null
 }
 
+variable "db_system_cluster_name" {
+  description = "(Optional) The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive."
+  type        = string
+  default     = null
+}
+
 # tags
 
 variable "freeform_tags" {

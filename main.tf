@@ -44,6 +44,7 @@ resource "oci_database_db_system" "main" {
   shape           = var.db_system_shape
   ssh_public_keys = var.ssh_public_keys
   subnet_id       = local.subnet_id
+  cluster_name    = var.db_system_cluster_name
 
   #Optional
   cpu_core_count          = var.db_system_cpu_core_count
