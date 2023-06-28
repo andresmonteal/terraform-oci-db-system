@@ -17,6 +17,7 @@ locals {
   ]
   network_cmp_id  = try(data.oci_identity_compartments.network[0].compartments[0].id, var.network_cmp_id)
   security_cmp_id = try(data.oci_identity_compartments.security[0].compartments[0].id, var.security_cmp_id)
+  ssh_key         = try(base64decode(data.oci_secrets_secretbundle.bundle[0].secret_bundle_content.0.content), var.ssh_public_keys)
   subnet_id       = data.oci_core_subnets.subnets.subnets[0].id
 }
 
@@ -43,7 +44,7 @@ resource "oci_database_db_system" "main" {
   }
   hostname        = var.db_system_hostname
   shape           = var.db_system_shape
-  ssh_public_keys = try(trimspace(base64decode(data.oci_secrets_secretbundle.bundle[0].secret_bundle_content.0.content)), trimspace(var.ssh_public_keys), null)
+  ssh_public_keys = try(trimspace(local.ssh_key))
   subnet_id       = local.subnet_id
   cluster_name    = var.db_system_cluster_name
 
