@@ -68,11 +68,6 @@ variable "db_system_shape" {
   type        = string
 }
 
-variable "ssh_public_keys" {
-  description = "(Required) (Updatable) The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 40,000 characters."
-  type        = list(string)
-}
-
 variable "subnet_name" {
   description = "(Required) The name of the subnet the DB system is associated with."
   type        = string
@@ -134,6 +129,12 @@ variable "db_system_node_count" {
 variable "db_system_cluster_name" {
   description = "(Optional) The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive."
   type        = string
+  default     = null
+}
+
+variable "ssh_public_keys" {
+  description = "(Required) (Updatable) The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 40,000 characters."
+  type        = list(string)
   default     = null
 }
 
