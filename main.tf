@@ -30,10 +30,10 @@ resource "oci_database_db_system" "main" {
     #Required
     database {
       #Required
-      admin_password = var.db_system_admin_password
+      admin_password = local.sys_pwd
 
       #Optional
-      db_name       = local.sys_pwd
+      db_name       = var.db_system_db_home_database_db_name
       defined_tags  = var.defined_tags
       freeform_tags = local.merged_freeform_tags
     }
