@@ -133,8 +133,8 @@ variable "db_system_cluster_name" {
 }
 
 variable "ssh_public_keys" {
-  description = "(Required) (Updatable) The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 40,000 characters."
-  type        = list(string)
+  description = "(Updatable) The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 40,000 characters."
+  type        = string
   default     = null
 }
 
