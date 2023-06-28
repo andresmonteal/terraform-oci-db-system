@@ -36,6 +36,25 @@ data "oci_identity_compartments" "network" {
   }
 }
 
+data "oci_identity_compartments" "security" {
+  count = var.security_cmp == null ? 0 : 1
+  #Required
+  compartment_id            = var.tenancy_ocid
+  access_level              = "ANY"
+  compartment_id_in_subtree = true
+
+  #Optional
+  filter {
+    name   = "state"
+    values = ["ACTIVE"]
+  }
+
+  filter {
+    name   = "name"
+    values = [var.security_cmp]
+  }
+}
+
 // Get all the Availability Domains for the region and default backup policies
 data "oci_identity_availability_domains" "ad" {
   compartment_id = var.tenancy_ocid
@@ -47,4 +66,20 @@ data "oci_core_subnets" "subnets" {
 
   #Optional
   display_name = var.subnet_name
+}
+
+#This data source provides the list of Secrets in Oracle Cloud Infrastructure Vault service.
+data "oci_vault_secrets" "secret" {
+  count = var.secret == null ? 0 : 1
+  #Required
+  compartment_id = local.security_cmp_id
+
+  #Optional
+  name = var.secret
+}
+
+#This data source provides details about a specific Secretbundle resource in Oracle Cloud Infrastructure Secrets service.
+data "oci_secrets_secretbundle" "bundle" {
+  count     = var.secret == null ? 0 : 1
+  secret_id = data.oci_vault_secrets.secret[0].secrets[0].id
 }

@@ -31,6 +31,18 @@ variable "network_cmp_id" {
   default     = null
 }
 
+variable "security_cmp" {
+  description = "Compartment name for security resources"
+  type        = string
+  default     = null
+}
+
+variable "security_cmp_id" {
+  description = "Compartment id for security resources"
+  type        = string
+  default     = null
+}
+
 # db system
 
 # required
@@ -121,6 +133,18 @@ variable "db_system_node_count" {
 
 variable "db_system_cluster_name" {
   description = "(Optional) The cluster name for Exadata and 2-node RAC virtual machine DB systems. The cluster name must begin with an alphabetic character, and may contain hyphens (-). Underscores (_) are not permitted. The cluster name can be no longer than 11 characters and is not case sensitive."
+  type        = string
+  default     = null
+}
+
+variable "ssh_public_keys" {
+  description = "Public SSH keys to be included in the ~/.ssh/authorized_keys file for the default user on the node."
+  type        = string
+  default     = null
+}
+
+variable "secret" {
+  description = "Secret name to be used as key for the db-system resource"
   type        = string
   default     = null
 }
