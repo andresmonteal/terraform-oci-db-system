@@ -69,17 +69,33 @@ data "oci_core_subnets" "subnets" {
 }
 
 #This data source provides the list of Secrets in Oracle Cloud Infrastructure Vault service.
-data "oci_vault_secrets" "secret" {
-  count = var.secret == null ? 0 : 1
+data "oci_vault_secrets" "ssh_secret" {
+  count = var.ssh_secret == null ? 0 : 1
   #Required
   compartment_id = local.security_cmp_id
 
   #Optional
-  name = var.secret
+  name = var.ssh_secret
 }
 
 #This data source provides details about a specific Secretbundle resource in Oracle Cloud Infrastructure Secrets service.
-data "oci_secrets_secretbundle" "bundle" {
+data "oci_secrets_secretbundle" "ssh_bundle" {
   count     = var.secret == null ? 0 : 1
-  secret_id = data.oci_vault_secrets.secret[0].secrets[0].id
+  secret_id = data.oci_vault_secrets.ssh_secret[0].secrets[0].id
+}
+
+#This data source provides the list of Secrets in Oracle Cloud Infrastructure Vault service.
+data "oci_vault_secrets" "pwd_secret" {
+  count = var.pwd_secret == null ? 0 : 1
+  #Required
+  compartment_id = local.security_cmp_id
+
+  #Optional
+  name = var.pwd_secret
+}
+
+#This data source provides details about a specific Secretbundle resource in Oracle Cloud Infrastructure Secrets service.
+data "oci_secrets_secretbundle" "pwd_bundle" {
+  count     = var.pwd_secret == null ? 0 : 1
+  secret_id = data.oci_vault_secrets.pwd_secret[0].secrets[0].id
 }

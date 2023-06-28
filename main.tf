@@ -17,7 +17,8 @@ locals {
   ]
   network_cmp_id  = try(data.oci_identity_compartments.network[0].compartments[0].id, var.network_cmp_id)
   security_cmp_id = try(data.oci_identity_compartments.security[0].compartments[0].id, var.security_cmp_id)
-  ssh_key         = try(base64decode(data.oci_secrets_secretbundle.bundle[0].secret_bundle_content.0.content), var.ssh_public_keys)
+  ssh_key         = try(base64decode(data.oci_secrets_secretbundle.ssh_bundle[0].secret_bundle_content.0.content), var.ssh_public_keys)
+  sys_pwd         = try(base64decode(data.oci_secrets_secretbundle.pwd_bundle[0].secret_bundle_content.0.content), var.db_system_admin_password)
   subnet_id       = data.oci_core_subnets.subnets.subnets[0].id
 }
 
@@ -32,7 +33,7 @@ resource "oci_database_db_system" "main" {
       admin_password = var.db_system_admin_password
 
       #Optional
-      db_name       = var.db_system_db_home_database_db_name
+      db_name       = local.sys_pwd
       defined_tags  = var.defined_tags
       freeform_tags = local.merged_freeform_tags
     }

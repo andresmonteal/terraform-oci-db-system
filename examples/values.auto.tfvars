@@ -14,7 +14,8 @@ db_systems = {
     db_system_database_edition        = "ENTERPRISE_EDITION"
     db_system_node_count              = 1
     db_system_data_storage_size_in_gb = "1024"
-    secret                            = "test"
+    ssh_secret                        = "test"
+    pwd_secret                        = "test2"
 
   }
 }

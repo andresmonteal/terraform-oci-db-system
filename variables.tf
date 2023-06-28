@@ -53,11 +53,6 @@ variable "ad_number" {
   default     = null
 }
 
-variable "db_system_admin_password" {
-  description = "(Required) A strong password for SYS, SYSTEM, PDB Admin and TDE Wallet. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers, and two special characters."
-  type        = string
-}
-
 variable "db_system_hostname" {
   description = "(Required) The hostname for the DB system. The hostname must begin with an alphabetic character, and can contain alphanumeric characters and hyphens (-). The maximum length of the hostname is 16 characters for bare metal and virtual machine DB systems, and 12 characters for Exadata DB systems."
   type        = string
@@ -95,6 +90,13 @@ variable "db_system_db_home_database_db_name" {
 
 
 # optional
+
+variable "db_system_admin_password" {
+  description = "(Required) A strong password for SYS, SYSTEM, PDB Admin and TDE Wallet. The password must be at least nine characters and contain at least two uppercase, two lowercase, two numbers, and two special characters."
+  type        = string
+  sensitive   = true
+  default     = null
+}
 
 variable "db_system_cpu_core_count" {
   description = "The number of CPU cores enabled on the DB system."
@@ -135,12 +137,21 @@ variable "db_system_cluster_name" {
 variable "ssh_public_keys" {
   description = "(Updatable) The public key portion of the key pair to use for SSH access to the DB system. Multiple public keys can be provided. The length of the combined keys cannot exceed 40,000 characters."
   type        = string
+  sensitive   = true
   default     = null
 }
 
-variable "secret" {
-  description = "Secret name to be used as key for the db-system resource"
+variable "ssh_secret" {
+  description = "Secret name to be used as ssh key for the db-system resource"
   type        = string
+  sensitive   = true
+  default     = null
+}
+
+variable "pwd_secret" {
+  description = "Secret name to be used as sys admin pwd for the db-system resource"
+  type        = string
+  sensitive   = true
   default     = null
 }
 
