@@ -44,7 +44,7 @@ resource "oci_database_db_system" "main" {
   }
   hostname        = var.db_system_hostname
   shape           = var.db_system_shape
-  ssh_public_keys = try(trimspace(local.ssh_key))
+  ssh_public_keys = [try(trimspace(local.ssh_key))]
   subnet_id       = local.subnet_id
   cluster_name    = var.db_system_cluster_name
 
