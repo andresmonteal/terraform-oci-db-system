@@ -137,12 +137,6 @@ variable "db_system_cluster_name" {
   default     = null
 }
 
-variable "ssh_public_keys" {
-  description = "Public SSH keys to be included in the ~/.ssh/authorized_keys file for the default user on the node."
-  type        = string
-  default     = null
-}
-
 variable "secret" {
   description = "Secret name to be used as key for the db-system resource"
   type        = string
