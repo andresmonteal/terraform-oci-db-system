@@ -151,8 +151,8 @@ variable "ssh_secret" {
 variable "pwd_secret" {
   description = "Secret name to be used as sys admin pwd for the db-system resource"
   type        = string
-  sensitive   = true
-  default     = null
+  #sensitive   = true
+  default = null
 }
 
 # tags

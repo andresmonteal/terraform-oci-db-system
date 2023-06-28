@@ -30,7 +30,7 @@ resource "oci_database_db_system" "main" {
     #Required
     database {
       #Required
-      admin_password = local.sys_pwd
+      admin_password = trimspace(local.sys_pwd)
 
       #Optional
       db_name       = var.db_system_db_home_database_db_name
