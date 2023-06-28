@@ -80,7 +80,7 @@ data "oci_vault_secrets" "ssh_secret" {
 
 #This data source provides details about a specific Secretbundle resource in Oracle Cloud Infrastructure Secrets service.
 data "oci_secrets_secretbundle" "ssh_bundle" {
-  count     = var.secret == null ? 0 : 1
+  count     = var.ssh_secret == null ? 0 : 1
   secret_id = data.oci_vault_secrets.ssh_secret[0].secrets[0].id
 }
 

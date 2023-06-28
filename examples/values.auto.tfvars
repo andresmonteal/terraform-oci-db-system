@@ -6,7 +6,6 @@ db_systems = {
     network_cmp                       = "cmp-networking"
     security_cmp                      = "cmp-security"
     ad_number                         = 1
-    db_system_admin_password          = "devops-iac"
     db_system_hostname                = "test"
     db_system_shape                   = "VM.Standard3.Flex"
     subnet_name                       = "sn-db-np-pri"

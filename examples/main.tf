@@ -10,7 +10,6 @@ module "db_system" {
   network_cmp  = each.value["network_cmp"]
   ad_number    = each.value["ad_number"]
 
-  db_system_admin_password           = each.value["db_system_admin_password"]
   db_system_db_home_db_version       = "19.0.0.0"
   db_system_db_home_database_db_name = each.value["db_name"]
 
