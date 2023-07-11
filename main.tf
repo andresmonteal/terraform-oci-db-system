@@ -61,6 +61,14 @@ resource "oci_database_db_system" "main" {
 
   node_count = var.db_system_node_count
   time_zone  = var.db_system_time_zone
+  lifecycle {
+    ignore_changes = [
+      defined_tags["Oracle-Tags.CreatedBy"],
+      defined_tags["Oracle-Tags.CreatedOn"]
+    ]
+    # This meta-argument, when set to true, will cause Terraform to reject with an error any plan that would destroy the resource
+    prevent_destroy = true
+  }
   timeouts {
     create = "2h"
     update = "2h"
