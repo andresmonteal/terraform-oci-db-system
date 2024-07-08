@@ -1,3 +1,6 @@
+# Copyright (c) 2024 Andres Montealegre, Email: montealegre.af@gmail.com
+# This project is licensed under the MIT License. See the [LICENSE] file for details.
+
 data "oci_identity_compartments" "compartment" {
   count = var.compartment == null ? 0 : 1
   #Required

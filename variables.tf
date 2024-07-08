@@ -1,4 +1,5 @@
-// Copyright (c) 2018, 2021, Oracle and/or its affiliates.
+# Copyright (c) 2024 Andres Montealegre, Email: montealegre.af@gmail.com
+# This project is licensed under the MIT License. See the [LICENSE] file for details.
 
 # compartments
 variable "tenancy_ocid" {
@@ -160,11 +161,42 @@ variable "pwd_secret" {
 variable "freeform_tags" {
   description = "(Optional) (Updatable) Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace."
   type        = map(any)
-  default     = null
+  default     = {}
 }
 
 variable "defined_tags" {
   description = "(Optional) (Updatable) Defined tags for this resource. Each key is predefined and scoped to a namespace."
   type        = map(any)
-  default     = null
+  default     = {}
+}
+
+#db backup
+variable "auto_backup_enabled" {
+  description = "(Applicable when source=DB_SYSTEM | NONE) (Updatable) If set to true, configures automatic backups. If you previously used RMAN or dbcli to configure backups and then you switch to using the Console or the API for backups, a new backup configuration is created and associated with your database. This means that you can no longer rely on your previously configured unmanaged backups to work."
+  type        = bool
+  default     = false
+}
+
+variable "backup_deletion_policy" {
+  description = "(Applicable when source=DB_SYSTEM | NONE) This defines when the backups will be deleted. - IMMEDIATE option keep the backup for predefined time i.e 72 hours and then delete permanently… - RETAIN will keep the backups as per the policy defined for database backups."
+  type        = string
+  default     = "RETAIN"
+}
+
+variable "backup_destination_type" {
+  description = "(Required when source=DB_SYSTEM | NONE) Type of the database backup destination."
+  type        = string
+  default = "OBJECT_STORE"
+}
+
+variable "recovery_window_in_days" {
+  description = "(Applicable when source=DB_SYSTEM | NONE) The OCID of the DBRS policy used for backup"
+  type        = number
+  default = 30
+}
+
+variable "run_immediate_full_backup" {
+  description = "(Applicable when source=DB_SYSTEM | NONE) If set to true, configures automatic full backups in the local region (the region of the DB system) for the first backup run immediately."
+  type        = bool
+  default = true
 }

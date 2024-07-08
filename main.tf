@@ -1,4 +1,5 @@
-// Copyright (c) 2018, 2021, Oracle and/or its affiliates.
+# Copyright (c) 2024 Andres Montealegre, Email: montealegre.af@gmail.com
+# This project is licensed under the MIT License. See the [LICENSE] file for details.
 
 ########################
 # code repositories
@@ -36,6 +37,21 @@ resource "oci_database_db_system" "main" {
       db_name       = var.db_system_db_home_database_db_name
       defined_tags  = var.defined_tags
       freeform_tags = local.merged_freeform_tags
+      
+      dynamic db_backup_config {
+      for_each = var.auto_backup_enabled ? [1] : []
+
+      content {
+          #Optional
+          auto_backup_enabled = var.auto_backup_enabled
+          backup_destination_details {
+              #Optional
+              type = var.backup_destination_type
+          }
+          recovery_window_in_days = var.recovery_window_in_days
+          run_immediate_full_backup = var.run_immediate_full_backup
+      }
+      }
     }
 
     #Optional
